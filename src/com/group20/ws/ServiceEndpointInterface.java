@@ -18,13 +18,17 @@ public interface ServiceEndpointInterface {
 	
 	//all methods available for the client:
 	
-	@WebMethod int reserveSeat(String movie, String day, String time, int row, int seatNr);
+	@WebMethod double reserveSeat(String movie, String day, String time, int row, int seatNr);
 	
 	@WebMethod Seat[][] getHall(String day, String time, String movie);
 	
 	@WebMethod DataBase getDataBase();
 	
-	@WebMethod int addReservation(ArrayList<Seat> seats);
+	@WebMethod int addReservation(ArrayList<String> seats);
+	
+	@WebMethod double getNormalPrice();
+	
+	@WebMethod double getLoungePrice();
 	
 	
 

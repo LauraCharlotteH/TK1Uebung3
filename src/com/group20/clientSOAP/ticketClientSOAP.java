@@ -11,6 +11,7 @@ import java.awt.TextComponent;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Enumeration;
 
 import javax.swing.AbstractButton;
@@ -51,9 +52,13 @@ public class ticketClientSOAP extends JFrame implements ActionListener {
 	String time;
 	JButton goOn;
 	JPanel seatDisplay;
-	String seatsReserved;
+	ArrayList<String> seatsReserved;
 	int reservationID;
-	int price;
+	double price;
+	JLabel screen;
+	JButton reserve;
+	JButton end;
+	JButton more;
 
 	public static void main(String[] args) throws Exception {
 
@@ -81,10 +86,12 @@ public class ticketClientSOAP extends JFrame implements ActionListener {
 
 		background.setLayout(new BoxLayout(background, BoxLayout.PAGE_AXIS));
 
-		welcome.setText("Welcome to our ticket booking system. Please select a day time and the movie you would like to watch below and klick ok. You will then be enabld to choose and reserve seats");
+		welcome.setText("Welcome to our ticket booking system.\n"
+				+ "Please select a day time and the movie you would like to watch below and klick ok.\n"
+				+ "You will then be enabld to choose and reserve seats");
 		setTextAreaToLabelstyle(welcome);
 		background.add(welcome);
-
+		// TODO
 		makeSelections();
 
 		goOn = new JButton("continue");
@@ -102,7 +109,8 @@ public class ticketClientSOAP extends JFrame implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-
+			//TODO cleanup
+			background.remove(selection);
 			day = getSelectedButtonText(days);
 			movie = getSelectedButtonText(movies);
 			time = getSelectedButtonText(times);
@@ -124,12 +132,12 @@ public class ticketClientSOAP extends JFrame implements ActionListener {
 		background.remove(selection);
 		background.remove(goOn);
 
-		//show where the screen is:
-		JLabel screen = new JLabel("Screen is here");
+		// show where the screen is:
+		screen = new JLabel("Screen is here");
 		background.add(screen);
 		// add seats
 		makeSeats();
-		JButton reserve = new JButton("reserve selected seats");
+		reserve = new JButton("reserve selected seats");
 		reserve.addActionListener(new ReserveListener());
 		background.add(reserve);
 		invalidate();
@@ -137,25 +145,101 @@ public class ticketClientSOAP extends JFrame implements ActionListener {
 
 	}
 
-	//what happens when clicking reserve
+	// what happens when clicking reserve
 	// has to be in here to access all the stuff
 	class ReserveListener implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			JToggleButton tmp;
-			for(Component t : seatDisplay.getComponents()){
-				tmp = (JToggleButton)t;
-				if (tmp.isSelected())System.out.println(tmp.getText());
-				//TODO
+			double tmpPrice;
+			seatsReserved = new ArrayList<String>();
+			for (Component t : seatDisplay.getComponents()) {
+				tmp = (JToggleButton) t;
+				if (tmp.isSelected()) {
+					// remember which seat was saved
+					seatsReserved.add(tmp.getText());
+					// get right row and Nr to reserve
+					int row = Character
+							.getNumericValue(tmp.getText().charAt(3));
+					int seatNr = Character.getNumericValue(tmp.getText()
+							.charAt(11));
+					// reserve and get price (or error!) back
+					tmpPrice = sei.reserveSeat(movie, day, time, row, seatNr);
+					// sum up price
+					if (tmpPrice > 0)
+						price += tmpPrice;
+				}
 			}
+			// store reservation
+			reservationID = sei.addReservation(seatsReserved);
+
+			// remove old stuff from view
+			background.remove(screen);
+			background.remove(reserve);
+			background.remove(seatDisplay);
+
+			// display final message:
+			welcome.setText("Thank you for reserving your seats.\n"
+					+ "The tickets will be available for you at the box office.\n"
+					+ "Please remember your reservation ID:\n\n"
+					+ reservationID
+					+ "\n\n"
+					+ "you will need it to access your reservation at the box office.\n\n"
+					+ "The final price is: " + price
+					+ "€ plus a reservation fee of 2€");
+
+			more = new JButton("rerserve more seats");
+			more.addActionListener(new moreListener());
+			background.add(more);
+
+			invalidate();
+			repaint();
+
+			end = new JButton("close");
+			end.addActionListener(new closeListener());
+			background.add(end);
+			invalidate();
+			repaint();
+		}
+	}
+
+	class closeListener implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			System.exit(0);
+		}
+	}
+
+	class moreListener implements ActionListener {
+		//TODO
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			//cleanup from old reservation:
+			price=0;
+			seatsReserved.clear();
+			background.remove(end);
+			background.remove(reserve);
+			background.remove(more);
+			//back to begining
+			welcome.setText("Welcome to our ticket booking system.\n"
+					+ "Please select a day time and the movie you would like to watch below and klick ok.\n"
+					+ "You will then be enabld to choose and reserve seats");
+			
+			background.add(selection);
+
+			
+			goOn = new JButton("continue");
+			goOn.addActionListener(new ContinueListener());
+			background.add(goOn);
 			
 		}
 	}
 
 	// generating the seats
 	private void makeSeats() {
-		seatDisplay = new JPanel(new GridLayout(0,seats[0].length));//(seats.length - 1,seats[0].length - 1));
+		seatDisplay = new JPanel(new GridLayout(0, seats[0].length));
 		JToggleButton seat;
 		for (int row = 0; row < seats.length; row++) {
 			for (int seatNr = 0; seatNr < seats[0].length; seatNr++) {
@@ -177,9 +261,11 @@ public class ticketClientSOAP extends JFrame implements ActionListener {
 				case FREE:
 					switch (type) {
 					case NORMAL:
-						seat.setBackground(Color.lightGray);break;
+						seat.setBackground(Color.lightGray);
+						break;
 					case LOUNGE:
-						seat.setBackground(Color.gray);break;
+						seat.setBackground(Color.gray);
+						break;
 					}
 				}
 				seatDisplay.add(seat);

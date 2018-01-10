@@ -20,7 +20,7 @@ public class ServiceEndpointImpl implements ServiceEndpointInterface {
 	}
 
 	@Override
-	public int reserveSeat(String movie, String day, String time, int row,
+	public double reserveSeat(String movie, String day, String time, int row,
 			int seatNr) {
 		int dayToReserve = 0;
 		int timeToReserve = 0;
@@ -126,8 +126,18 @@ public class ServiceEndpointImpl implements ServiceEndpointInterface {
 	}
 
 	@Override
-	public int addReservation(ArrayList<Seat> seats) {
+	public int addReservation(ArrayList<String> seats) {
 		return database.getRes().addReservation(seats);
+	}
+
+	@Override
+	public double getNormalPrice() {
+		return 8.50;
+	}
+
+	@Override
+	public double getLoungePrice() {
+		return 10.0;
 	}
 
 }

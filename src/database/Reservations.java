@@ -17,7 +17,7 @@ public class Reservations {
 	 * @param res reservaton to be added
 	 * @return true if succesfull false if ID is already in list
 	 */
-	public int addReservation(ArrayList<Seat> seats){
+	public int addReservation(ArrayList<String> seats){
 		int id = reservations.size();
 		reservations.add(new Reservation(id, seats));
 		return id;

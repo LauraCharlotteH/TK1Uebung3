@@ -27,12 +27,12 @@ public class SmallHall implements CinemaHall {
 	}
 
 	@Override
-	public int reserveSeat(int row, int seatNr) {
+	public double reserveSeat(int row, int seatNr) {
 		if (row<0 || seatNr<0 || row > 1 || seatNr > 4)return -2;//stay on arrangement
 		if(seats[row][seatNr].getStatus()== Status.RESERVED) return -1; //already reserved
 		if (seats[row][seatNr].getStatus() == Status.BROKEN)return 0; // broken seat
 		seats[row][seatNr].setStatus(Status.RESERVED);
-		return 1;
+		return seats[row][seatNr].getPrice();
 	}
 
 	@Override

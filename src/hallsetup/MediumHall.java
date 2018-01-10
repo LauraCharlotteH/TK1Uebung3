@@ -26,7 +26,7 @@ public class MediumHall implements CinemaHall {
 	}
 
 	@Override
-	public int reserveSeat(int row, int seatNr) {
+	public double reserveSeat(int row, int seatNr) {
 		if (row < 0 || seatNr < 0 || row > 3 || seatNr > 5)
 			return -2; // stay within seat arrangement
 		if (seats[row][seatNr].getStatus() == Status.BROKEN)
@@ -34,7 +34,7 @@ public class MediumHall implements CinemaHall {
 		if (seats[row][seatNr].getStatus() == Status.RESERVED)
 			return -1; // already reserved
 		seats[row][seatNr].setStatus(Status.RESERVED);
-		return 1;
+		return seats[row][seatNr].getPrice();
 	}
 
 	@Override
