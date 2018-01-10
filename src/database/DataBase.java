@@ -4,11 +4,13 @@ import java.util.*;
 
 public class DataBase {
 
-	List <Day> days;
+	ArrayList <Day> days;
+	Reservations res;
 
-	
+
 	public DataBase() {
 
+		this.res = new Reservations();
 		this.days = new ArrayList<Day>();
 		days.add(new Day("monday"));
 		days.add(new Day("tuesday"));
@@ -23,6 +25,10 @@ public class DataBase {
 
 	public List<Day> getDays() {
 		return days;
+	}
+
+	public Reservations getRes() {
+		return res;
 	}
 
 	

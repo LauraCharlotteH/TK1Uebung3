@@ -51,6 +51,9 @@ public class ticketClientSOAP extends JFrame implements ActionListener {
 	String time;
 	JButton goOn;
 	JPanel seatDisplay;
+	String seatsReserved;
+	int reservationID;
+	int price;
 
 	public static void main(String[] args) throws Exception {
 

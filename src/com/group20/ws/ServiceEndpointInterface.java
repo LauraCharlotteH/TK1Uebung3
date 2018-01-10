@@ -20,12 +20,12 @@ public interface ServiceEndpointInterface {
 	
 	@WebMethod int reserveSeat(String movie, String day, String time, int row, int seatNr);
 	
-
-	
 	@WebMethod Seat[][] getHall(String day, String time, String movie);
 	
-	
-	
 	@WebMethod DataBase getDataBase();
+	
+	@WebMethod int addReservation(ArrayList<Seat> seats);
+	
+	
 
 }

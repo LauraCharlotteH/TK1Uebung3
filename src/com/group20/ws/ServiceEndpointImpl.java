@@ -125,4 +125,9 @@ public class ServiceEndpointImpl implements ServiceEndpointInterface {
 		return database.getDays().get(dayToReserve).getTimes().get(timeToReserve).getHalls().get(hall).getSeats();
 	}
 
+	@Override
+	public int addReservation(ArrayList<Seat> seats) {
+		return database.getRes().addReservation(seats);
+	}
+
 }
