@@ -22,6 +22,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextArea;
+import javax.swing.JToggleButton;
 import javax.swing.UIManager;
 import javax.xml.namespace.QName;
 import javax.xml.ws.Service;
@@ -143,31 +144,33 @@ public class ticketClientSOAP extends JFrame implements ActionListener {
 	// generating the seats
 	private void makeSeats() {
 		JPanel seatDisplay = new JPanel(new GridLayout(0,seats[0].length));//(seats.length - 1,seats[0].length - 1));
-		JCheckBox check;
+		JToggleButton seat;
 		for (int row = 0; row < seats.length; row++) {
 			for (int seatNr = 0; seatNr < seats[0].length; seatNr++) {
 				// generate seat checkbox
-				check = new JCheckBox("row" + row + " seatNr" + seatNr);
+				seat = new JToggleButton("row" + row + " seatNr" + seatNr);
 				// colour according to status:
 				Status stat = seats[row][seatNr].getStatus();
 				TypeOfSeat type = seats[row][seatNr].getType();
 				switch (stat) {
 				case RESERVED:
-					check.setBackground(Color.red);
-					check.setEnabled(false);
+					seat.setBackground(Color.red);
+					seat.setEnabled(false);
+					break;
 				case BROKEN:
-					check.setBackground(Color.red);
-					check.setText("broken");
-					check.setEnabled(false);
+					seat.setBackground(Color.red);
+					seat.setText("broken");
+					seat.setEnabled(false);
+					break;
 				case FREE:
 					switch (type) {
 					case NORMAL:
-						check.setBackground(Color.gray);
+						seat.setBackground(Color.lightGray);break;
 					case LOUNGE:
-						check.setBackground(Color.darkGray);
+						seat.setBackground(Color.gray);break;
 					}
 				}
-				seatDisplay.add(check);
+				seatDisplay.add(seat);
 			}
 		}
 		background.add(seatDisplay);
