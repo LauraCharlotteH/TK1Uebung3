@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ====================================================================== 
+     10.01.2018 22:28:24                                                        
+
+     project  		TK1PracticalTask3  
+     description	a simple ticket booking for a cinema
+                   
+     Laura                                                                
+     ====================================================================== -->
+<project name="TK1PracticalTask3 Group 20" default="run">
+	<description>
+            description
+    </description>
+
+	<target name="run" depends="compile">
+		<java classname="com.za.code.EndpointPublisher.java">
+			<classpath path "staging"/>
+		</java>
+		<java classname="com.za.code.ticketClientSOAP.java">
+			<classpath path "staging"/>
+		</java>
+	</target>
+
+	<target name="compile">
+		<javac includeantruntime="false" srcdir="src" destdir="staging" />
+	</target>
+
+</project>
