@@ -1,5 +1,7 @@
 package com.group20.ws;
 
+import hallsetup.Seat;
+
 import java.util.ArrayList;
 
 import javax.jws.WebMethod;
@@ -21,6 +23,8 @@ public interface ServiceEndpointInterface {
 	@WebMethod int reserveRandomSeats(String movie, String day, String time, int noOfSeats);
 	
 	@WebMethod int reserveSeats(String movie, String day, String time, ArrayList<String> listofSeats);
+	
+	@WebMethod Seat[][] getHall(String day, String time, String movie);
 	
 	@WebMethod String getMovies();
 	

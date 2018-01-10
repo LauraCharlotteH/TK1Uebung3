@@ -10,6 +10,12 @@ private TypeOfSeat type;
 private Status status;
 
 
+public Seat(){
+	this.row = -1;
+	this.seatNr = -1;
+	this.type = null;
+	this.status = null;
+}
 
 public Seat(int row, int seatNr, TypeOfSeat type, Status status) {
 	this.row = row;

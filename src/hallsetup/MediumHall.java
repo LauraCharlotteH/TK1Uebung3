@@ -1,7 +1,6 @@
 package hallsetup;
 
-import hallsetup.Seat.Status;
-import hallsetup.Seat.TypeOfSeat;
+import hallsetup.Seat.*;
 
 public class MediumHall implements CinemaHall {
 
