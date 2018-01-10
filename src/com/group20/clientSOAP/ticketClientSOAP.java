@@ -4,8 +4,9 @@ import java.net.URL;
 import javax.xml.namespace.QName;
 import javax.xml.ws.Service;
 
+import com.group20.ws.*;
+
 import database.DataBase;
-import ws.*;
 
 
 public class ticketClientSOAP {
@@ -15,7 +16,7 @@ public class ticketClientSOAP {
 
 	        //1st argument service URI, refer to wsdl document above
 		//2nd argument is service name, refer to wsdl document above
-	        QName qname = new QName("http://ws.goup20.com/", "ServiceEndpointImplService");
+	        QName qname = new QName("http://ws.group20.com/", "ServiceEndpointImplService");
 
 	        Service service = Service.create(url, qname);
 

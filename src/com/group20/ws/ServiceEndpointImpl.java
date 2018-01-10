@@ -1,10 +1,10 @@
-package ws;
+package com.group20.ws;
 
 import javax.jws.WebService;
 
 import database.DataBase;
 
-@WebService(endpointInterface = "ws.ServiceEndpointInteface")
+@WebService(endpointInterface = "com.group20.ws.ServiceEndpointInterface")
 public class ServiceEndpointImpl implements ServiceEndpointInterface {
 
 	DataBase database;

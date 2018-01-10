@@ -1,7 +1,7 @@
-package endpoint;
+package com.group20.endpoint;
 import javax.xml.ws.Endpoint;
 
-import ws.ServiceEndpointImpl;
+import com.group20.ws.ServiceEndpointImpl;
 
 //Endpoint publisher
 public class EndpointPublisher{

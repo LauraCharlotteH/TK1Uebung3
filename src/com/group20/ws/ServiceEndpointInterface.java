@@ -1,4 +1,4 @@
-package ws;
+package com.group20.ws;
 
 import javax.jws.WebMethod;
 import javax.jws.WebService;
