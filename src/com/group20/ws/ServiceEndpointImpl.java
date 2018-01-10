@@ -1,5 +1,7 @@
 package com.group20.ws;
 
+import java.util.ArrayList;
+
 import javax.jws.WebService;
 
 import database.DataBase;
@@ -97,6 +99,19 @@ public class ServiceEndpointImpl implements ServiceEndpointInterface {
 	public DataBase getDataBase() {
 		return database;
 
+	}
+
+	@Override
+	public int reserveRandomSeats(String movie, String day, String time, int noOfSeats) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int reserveSeats(String movie, String day, String time,
+			ArrayList<String> listofSeats) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }
