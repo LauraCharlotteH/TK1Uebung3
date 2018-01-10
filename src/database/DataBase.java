@@ -7,7 +7,7 @@ public class DataBase {
 	List <Day> days;
 
 	
-	public DataBase(List<Day> days) {
+	public DataBase() {
 
 		this.days = new ArrayList<Day>();
 		days.add(new Day("monday"));

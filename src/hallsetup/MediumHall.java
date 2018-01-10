@@ -20,10 +20,10 @@ public class MediumHall implements CinemaHall {
 		}
 		// fill last row with lounge seats
 		for (int sN = 0; sN < 6; sN++) {
-			seats[4][sN] = new Seat(4, sN, TypeOfSeat.LOUNGE, Status.FREE);
+			seats[3][sN] = new Seat(3, sN, TypeOfSeat.LOUNGE, Status.FREE);
 		}
 		// make sure to include the broken seat that cannot be used
-		seats[4][5].setStatus(Status.BROKEN);
+		seats[3][5].setStatus(Status.BROKEN);
 	}
 
 	@Override
