@@ -2,10 +2,12 @@ package com.group20.clientSOAP;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.ComponentOrientation;
 import java.awt.GridLayout;
 import java.awt.LayoutManager;
 import java.awt.TextArea;
+import java.awt.TextComponent;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.net.URL;
@@ -48,6 +50,7 @@ public class ticketClientSOAP extends JFrame implements ActionListener {
 	String day;
 	String time;
 	JButton goOn;
+	JPanel seatDisplay;
 
 	public static void main(String[] args) throws Exception {
 
@@ -62,7 +65,6 @@ public class ticketClientSOAP extends JFrame implements ActionListener {
 
 		sei = service.getPort(ServiceEndpointInterface.class);
 
-		System.out.println(sei.getBigHallDescr());
 		new ticketClientSOAP();
 
 	}
@@ -112,7 +114,7 @@ public class ticketClientSOAP extends JFrame implements ActionListener {
 
 	private void makeSeatSelection() {
 		welcome.setText("Please select the seats you want to reserve "
-				+ "\ngray Seat boxes are available, green ones selected and red ones already reserved."
+				+ "\ngray Seat boxes are available, blue ones selected and red ones already reserved."
 				+ "\n\nThe dark gray seats are our super comfy lounge chairs and cost a little more.");
 
 		// remove unneeded stuff
@@ -132,18 +134,25 @@ public class ticketClientSOAP extends JFrame implements ActionListener {
 
 	}
 
+	//what happens when clicking reserve
 	// has to be in here to access all the stuff
 	class ReserveListener implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-
+			JToggleButton tmp;
+			for(Component t : seatDisplay.getComponents()){
+				tmp = (JToggleButton)t;
+				if (tmp.isSelected())System.out.println(tmp.getText());
+				//TODO
+			}
+			
 		}
 	}
 
 	// generating the seats
 	private void makeSeats() {
-		JPanel seatDisplay = new JPanel(new GridLayout(0,seats[0].length));//(seats.length - 1,seats[0].length - 1));
+		seatDisplay = new JPanel(new GridLayout(0,seats[0].length));//(seats.length - 1,seats[0].length - 1));
 		JToggleButton seat;
 		for (int row = 0; row < seats.length; row++) {
 			for (int seatNr = 0; seatNr < seats[0].length; seatNr++) {

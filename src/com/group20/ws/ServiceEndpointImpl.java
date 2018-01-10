@@ -67,35 +67,8 @@ public class ServiceEndpointImpl implements ServiceEndpointInterface {
 		return database.getDays().get(dayToReserve).getTimes().get(timeToReserve).getHalls().get(hall).reserveSeat(row, seatNr);
 	}
 
-	@Override
-	public String getMovies() {
-		return "Hitchikers Guide to the galaxy, 23 and Matrix";
 
-	}
 
-	@Override
-	public String getTimes() {
-		return "12:00, 16:00 and 20:00";
-
-	}
-
-	@Override
-	public String getSmallHallDescr() {
-		return "our small hall fits ten people in two rows of normal seats";
-
-	}
-
-	@Override
-	public String getMediumHallDescr() {
-		return "our medium hall fits 24 people in four rows and the last row is fitted with our super comfy lounge chairs";
-
-	}
-
-	@Override
-	public String getBigHallDescr() {
-		return "our big hall fits 41 people in six rows and the last row is fitted with our super comfy lounge chairs";
-
-	}
 
 	@Override
 	public DataBase getDataBase() {
@@ -103,18 +76,7 @@ public class ServiceEndpointImpl implements ServiceEndpointInterface {
 
 	}
 
-	@Override
-	public int reserveRandomSeats(String movie, String day, String time, int noOfSeats) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 
-	@Override
-	public int reserveSeats(String movie, String day, String time,
-			ArrayList<String> listofSeats) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 
 	@Override
 	public Seat[][] getHall(String day, String time, String movie) {

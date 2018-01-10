@@ -20,21 +20,11 @@ public interface ServiceEndpointInterface {
 	
 	@WebMethod int reserveSeat(String movie, String day, String time, int row, int seatNr);
 	
-	@WebMethod int reserveRandomSeats(String movie, String day, String time, int noOfSeats);
-	
-	@WebMethod int reserveSeats(String movie, String day, String time, ArrayList<String> listofSeats);
+
 	
 	@WebMethod Seat[][] getHall(String day, String time, String movie);
 	
-	@WebMethod String getMovies();
 	
-	@WebMethod String getTimes();
-	
-	@WebMethod String getSmallHallDescr();
-	
-	@WebMethod String getMediumHallDescr();
-	
-	@WebMethod String getBigHallDescr();
 	
 	@WebMethod DataBase getDataBase();
 
