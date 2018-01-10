@@ -8,7 +8,6 @@ String description;
 
 
 public Movie(String title, String pgRating, String description) {
-	super();
 	this.title = title;
 	this.pgRating = pgRating;
 	this.description = description;
