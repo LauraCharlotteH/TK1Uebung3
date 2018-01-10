@@ -1,7 +1,7 @@
-package server;
+package hallsetup;
 
-import server.Seat.Status;
-import server.Seat.TypeOfSeat;
+import hallsetup.Seat.Status;
+import hallsetup.Seat.TypeOfSeat;
 
 public class BigHall implements CinemaHall {
 

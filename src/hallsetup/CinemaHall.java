@@ -1,4 +1,4 @@
-package server;
+package hallsetup;
 
 public interface CinemaHall {
 

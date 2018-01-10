@@ -1,4 +1,4 @@
-package server;
+package hallsetup;
 
 public class Seat {
 public enum TypeOfSeat {NORMAL, LOUNGE}

@@ -1,4 +1,4 @@
-package server;
+package hallsetup;
 
 public class Movie {
 String title;
